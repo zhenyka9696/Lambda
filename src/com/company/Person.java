@@ -4,6 +4,9 @@ public class Person {
     String name;
     String surname;
 
+    public Person() {
+    }
+
     @Override
     public String toString() {
         return "Person{" +

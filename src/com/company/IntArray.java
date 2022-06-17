@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,10 +12,11 @@ public class IntArray {
     public static void main(String[] args) {
 //int[] arr = fillOrder();
         int[] arr = fillRandom();
+        System.out.println(Arrays.toString(sortAsc(arr)));
         print(arr);
         printEven(arr);
         fillRandom();
-        printDivisible
+        //printDivisible(arr);
     }
 
     public static int[] fillOrder() {
@@ -23,7 +25,7 @@ public class IntArray {
 
     public static int[] fillRandom() {
         Random random = new Random();
-        return IntStream.generate(() -> random.nextInt((count + 1)))//range(0,count+1).toArray();//внутри скобок увеличивается правая часть диапазона, снаружи увеличивается левая часть диапазона
+return IntStream.generate(() -> random.nextInt((count + 1)))//range(0,count+1).toArray();//внутри скобок увеличивается правая часть диапазона, снаружи увеличивается левая часть диапазона
                 .distinct()
                 .limit(10)
                 .toArray();
@@ -51,5 +53,23 @@ public class IntArray {
                         .filter(i->i%3==0||i%5==0||i%11==0)
                        .count();
                          System.out.println(count);
+    }
+
+    static int[] sortAsc(int[] arr){
+        int[] result=Arrays.stream(arr)
+                .sorted()
+                .toArray();
+        return result;
+            }
+
+    static int[] sortDesc(int[] arr){
+        int[] result =
+                Arrays.stream
+                        (arr)
+                        .boxed()
+                        .sorted(Comparator.reverseOrder())
+                        .mapToInt(Integer::intValue)
+                        .toArray();
+        return result;
     }
 }
